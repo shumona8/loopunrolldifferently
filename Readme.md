@@ -1,62 +1,72 @@
-The simple-vector-incr and simple-vector-add programs are simpler implementations of vector-add.  The learning objective for a developer inspecting simple-vector-incr.cpp is to follow the instructions in the comments within the code. Following Steps 1 - 5 the developer will modify the code from that of adding element-wise +1 to an input vector and eventually adding in pieces another input vector, buffer, and accessor that adds two vectors together.  The final product should look similar to simple-vector-add.cpp.
-  
-| Optimized for                       | Description
-|:---                               |:---
-| OS                                | Linux* Ubuntu 18.04, Windows* 10
-| Hardware                          | Skylake with GEN9 or newer
-| Software                          | Intel&reg; oneAPI DPC++ Compiler (beta)
-| What you will learn               | The developer will learn about buffers, accessors, and command group handlers.
-| Time to complete                  | 15 minutes  
-  
-## Key implementation details 
-The implementation of the simple-vector-incr program is such that a developer following Steps 1 - 5 embedded in the code will learn abou the buffers, accessors, and command group handler.
+Unrolling Loops Sample
+The Loop Unroll demonstrates a simple example of unrolling loops to improve the throughput of a DPC++ program for GPU offload.
 
-## License  
-This code sample is licensed under MIT license. 
+For comprehensive instructions see the DPC++ Programming and search based on relevant terms noted in the comments.
 
-## How to Build for CPU and GPU 
+Optimized for	Description
+OS	Linux* Ubuntu* 18.04,
+Hardware	Skylake with GEN9 or newer,
+Software	Intel® oneAPI DPC++ Compiler
+What you will learn	how to perform reduction with oneAPI on cpu and gpu
+Time to complete	30 min
+Purpose
+The loop unrolling mechanism is used to increase program parallelism by duplicating the compute logic within a loop. The number of times the loop logic is duplicated is called the unroll factor. Depending on whether the unroll factor is equal to the number of loop iterations or not, loop unroll methods can be categorized as full-loop unrolling and partial-loop unrolling. A full unroll is a special case where the unroll factor is equal to the number of loop iterations.
 
-### on Linux*  
-   * Build the program using Make  
-    make all  
+Key Concepts
+Basics of loop unrolling.
+How to unroll loops in your program.
+Determining the optimal unroll factor for your program.
+License
+Code samples are licensed under the MIT license. See License.txt for details.
 
-   * Run the program  
-    make run  
+Third party program Licenses can be found here: third-party-programs.txt
 
-   * Clean the program  
-    make clean 
+Building the loop_unroll Tutorial
+Note: if you have not already done so, set up your CLI environment by sourcing the setvars script located in the root of your oneAPI installation.
 
-### On Windows*
+Linux Sudo: . /opt/intel/oneapi/setvars.sh
+Linux User: . ~/intel/oneapi/setvars.sh
+Windows: C:\Program Files(x86)\Intel\oneAPI\setvars.bat
 
-#### Command line using MSBuild
+Include Files
+The included header dpc_common.hpp is located at %ONEAPI_ROOT%\dev-utilities\latest\include on your development system.
 
-*  MSBuild simple-vector-inc.sln /t:Rebuild /p:Configuration="debug"
+Running Samples in DevCloud
+If running a sample in the Intel DevCloud, remember that you must specify the compute node (fpga_compile or fpga_runtime) and whether to run in batch or interactive mode. For more information see the Intel® oneAPI Base Toolkit Get Started Guide (https://devcloud.intel.com/oneapi/get-started/base-toolkit/).
 
-#### Visual Studio IDE
+Building the loop-unroll Program for CPU and GPU
+Running Samples In DevCloud
+If running a sample in the Intel DevCloud, remember that you must specify the compute node (CPU, GPU, FPGA) and whether to run in batch or interactive mode. For more information, see the Intel® oneAPI Base Toolkit Get Started Guide (https://devcloud.intel.com/oneapi/get-started/base-toolkit/)
 
-* Open Visual Studio 2017
-* Select Menu "File > Open > Project/Solution", find "simple-vector-add" folder and select "simple-vector-add.sln"
-* Select Menu "Project > Build" to build the selected configuration
-* Select Menu "Debug > Start Without Debugging" to run the program
+On a Linux* System
+Build the program using the following cmake commands.
+$ cd loop-unroll
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+Run the program
+$ make run  
+Clean the program
+$ make clean
+On a Windows* System Using Visual Studio* Version 2017 or Newer
+Build the program using VS2017 or VS2019
 
-#### Notices and Disclaimers
+Right-click on the solution file and open using either VS2017 or VS2019 IDE.
+Right-click on the project in Solution Explorer and select Rebuild.
+From the top menu, select Debug -> Start without Debugging.
+Build the program using MSBuild
 
-No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document.
+Open "x64 Native Tools Command Prompt for VS2017" or "x64 Native Tools Command Prompt for VS2019"
+Run the following command: MSBuild loop-unroll.sln.sln /t:Rebuild /p:Configuration="Release"
 
-This document contains information on products, services and/or processes in development. All information provided here is subject to change without notice. Contact your Intel representative to obtain the latest forecast, schedule, specifications and roadmaps.
+## Running the sample on devcloud
+clone the repo
+run the ipython notebook
+## The experience
+## Good
+It was good learning experience to work with DPC++,Had got good exposure to GPU ,FPga
+## bad
+Devcloud is slow at times
+The learning process of DPC++ is tough
 
-Intel technologies' features and benefits depend on system configuration and may require enabled hardware, software or service activation. Performance varies depending on system configuration. No product or component can be absolutely secure. Check with your system manufacturer or retailer or learn more at [intel.com]. 
-
-The products and services described may contain defects or errors which may cause deviations from published specifications. Current characterized errata are available on request.
-
-Intel disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
-
-Intel, the Intel logo and Xeon are trademarks of Intel Corporation in the U.S. and/or other countries.
-
-Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks of Microsoft Corporation in the United States and/or other countries.
-
-OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission of The Khronos Group.
-
-*Other names and brands may be claimed as the property of others.
-
-© Intel Corporation.
